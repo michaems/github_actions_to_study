@@ -1,0 +1,15 @@
+name: "{GitHub.username}'s Awesome Action"
+description: "An awesome GitHub Action that does something amazing."
+inputs:
+  who-to-greet: #id of the input
+    description: "The name of the person to greet"
+    required: true
+    default: "World"
+outputs:
+  answer: #id of the output
+    description: "The answer to everything: (always 42)"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.who-to-greet }}

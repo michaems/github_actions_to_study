@@ -1,0 +1,24 @@
+name: "Test GitHub Action"
+on: [push]
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository to test action locally
+        uses: actions/checkout@v3.5.2
+
+      - name: Run my awesome action
+        id: my-action
+        uses: ./
+        with:
+          who-to-greet: "Mona the Octocat"
+      
+      - name: Output the answer
+        run: echo "The answer is ${{ steps.my-action.outputs.answer }}"
+
+      - name: Test the container directly
+          if ${{steps.my-action.outputs.answer != 42}}
+        run: |
+            echo "::error file=entrypoint.sh,line=4,title=Wrong Answer::The action did not return the correct answer."
+            exit 1
+              
