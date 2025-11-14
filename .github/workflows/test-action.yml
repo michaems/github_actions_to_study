@@ -17,7 +17,7 @@ jobs:
         run: echo "The answer is ${{ steps.my-action.outputs.answer }}"
 
       - name: Test the container directly
-          if ${{steps.my-action.outputs.answer != 42}}
+          if ${{steps.my-action.outputs.answer != "The answer is 42"}}
         run: |
             echo "::error file=entrypoint.sh,line=4,title=Wrong Answer::The action did not return the correct answer."
             exit 1
